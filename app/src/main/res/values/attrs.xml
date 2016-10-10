@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PhotosView">
+        <attr name="maxheight_if_one" format="dimension"></attr>
+        <attr name="maxwidth_if_one" format="dimension"></attr>
+        <attr name="height_if_multi" format="dimension"></attr>
+        <attr name="width_if_multi" format="dimension"></attr>
+        <attr name="horizontal_grap" format="dimension"></attr>
+        <attr name="vertical_grap" format="dimension"></attr>
+        <attr name="column" format="integer"></attr>
+        <attr name="maxcount" format="integer"></attr>
+    </declare-styleable>
+    <declare-styleable name="SelectImageview">
+        <attr name="state_checked" format="reference"></attr>
+        <attr name="state_unchecked" format="reference"></attr>
+    </declare-styleable>
+    <declare-styleable name="CirclesView">
+        <attr name="max_num" format="integer"></attr>
+        <attr name="width" format="dimension"></attr>
+    </declare-styleable>
+</resources>
