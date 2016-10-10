@@ -44,9 +44,30 @@ public class MainActivity extends AppCompatActivity {
                 showToast(String.format("第%d个", position));
             }
         });
-        civs.setUrls("http://img3.imgtn.bdimg.com/it/u=8453116,2287725467&fm=11&gp=0.jpg",
+        civs.setUrls(
+                "http://img3.imgtn.bdimg.com/it/u=8453116,2287725467&fm=11&gp=0.jpg",
+                "http://img3.imgtn.bdimg.com/it/u=8453116,2287725467&fm=11&gp=0.jpg",
+                "http://img3.imgtn.bdimg.com/it/u=8453116,2287725467&fm=11&gp=0.jpg",
+                "http://img3.imgtn.bdimg.com/it/u=8453116,2287725467&fm=11&gp=0.jpg",
+                "http://img3.imgtn.bdimg.com/it/u=8453116,2287725467&fm=11&gp=0.jpg",
+                "http://img3.imgtn.bdimg.com/it/u=8453116,2287725467&fm=11&gp=0.jpg",
+                "http://img3.imgtn.bdimg.com/it/u=8453116,2287725467&fm=11&gp=0.jpg",
+                "http://img3.imgtn.bdimg.com/it/u=8453116,2287725467&fm=11&gp=0.jpg",
+                "http://img3.imgtn.bdimg.com/it/u=8453116,2287725467&fm=11&gp=0.jpg",
+                "http://img3.imgtn.bdimg.com/it/u=8453116,2287725467&fm=11&gp=0.jpg",
                 "http://img3.imgtn.bdimg.com/it/u=8453116,2287725467&fm=11&gp=0.jpg"
         );
+        civs.setCirclesViewClickListener(new CirclesViewClickListener() {
+            @Override
+            public void clickDots(View dotsView) {
+                showToast("点击了省略号");
+            }
+
+            @Override
+            public void clickNoDots(View view, int position) {
+                showToast("点击了第" + position + "个");
+            }
+        });
     }
 
     private void showToast(String mes) {

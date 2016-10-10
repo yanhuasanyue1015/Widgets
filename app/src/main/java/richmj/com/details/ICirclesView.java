@@ -5,5 +5,7 @@ package richmj.com.details;
  */
 
 public interface ICirclesView {
-    void setUrls(String ... urls);
+    void setUrls(String... urls);
+
+    void setCirclesViewClickListener(CirclesViewClickListener circlesViewClickListener);
 }

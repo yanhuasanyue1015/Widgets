@@ -5,6 +5,8 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.squareup.picasso.Picasso;
@@ -24,6 +26,7 @@ public class CirclesView extends RelativeLayout implements ICirclesView {
     private int civWidth;
     private int marginRight;
     private int marginleft;
+    private CirclesViewClickListener circlesViewClickListener;
 
 
     public CirclesView(Context context) {
@@ -46,7 +49,7 @@ public class CirclesView extends RelativeLayout implements ICirclesView {
             ivMaxNum = typedArray.getInteger(R.styleable.CirclesView_max_num, DefaultMaxNum);
             civWidth = typedArray.getDimensionPixelSize(R.styleable.CirclesView_width, (int) dp2px(DefaultWidthInDp));
             marginRight = civWidth * 3 / 4;
-            marginleft = civWidth- marginRight;
+            marginleft = civWidth - marginRight;
         } finally {
             typedArray.recycle();
         }
@@ -65,21 +68,21 @@ public class CirclesView extends RelativeLayout implements ICirclesView {
             endViewlayoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, TRUE);
             endView.setLayoutParams(endViewlayoutParams);
             addView(endView);
-            for (int i = 0; i < ivMaxNum; i++) {
-                CircleImageView cellView = createCellView(urls[i]);
+            for (int i = ivMaxNum-1; i >=0; i--) {
+                CircleImageView cellView = createCellView(urls[i], i);
                 RelativeLayout.LayoutParams cellViewlayoutParams = (LayoutParams) cellView.getLayoutParams();
                 cellViewlayoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, TRUE);
-                cellViewlayoutParams.setMargins(0, 0, civWidth * 3 / 4 * (i + 1), 0);
+                cellViewlayoutParams.setMargins(0, 0, marginRight* (ivMaxNum-i ), 0);
                 cellView.setLayoutParams(cellViewlayoutParams);
                 addView(cellView);
             }
         } else {
-            for (int i = 0; i < urls.length; i++) {
-                CircleImageView cellView = createCellView(urls[i]);
+            for (int i = urls.length-1; i >=0; i--) {
+                CircleImageView cellView = createCellView(urls[i], i);
                 RelativeLayout.LayoutParams cellViewlayoutParams = (LayoutParams) cellView.getLayoutParams();
                 cellViewlayoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, TRUE);
-                if (i != 0) {
-                    cellViewlayoutParams.setMargins(0, 0, civWidth * 3 / 4 * i, 0);
+                if (i != urls.length-1) {
+                    cellViewlayoutParams.setMargins(0, 0, marginRight * (urls.length-1-i), 0);
                 }
                 cellView.setLayoutParams(cellViewlayoutParams);
                 addView(cellView);
@@ -87,15 +90,31 @@ public class CirclesView extends RelativeLayout implements ICirclesView {
         }
     }
 
-    private CircleImageView createCellView(String url) {
-        CircleImageView circleImageView = createCiv();
+    private CircleImageView createCellView(String url, final int position) {
+        final CircleImageView circleImageView = createCiv();
         Picasso.with(getContext()).load(url).resize(civWidth, civWidth).onlyScaleDown().centerInside().into(circleImageView);
+        circleImageView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (circlesViewClickListener != null) {
+                    circlesViewClickListener.clickNoDots(circleImageView, position);
+                }
+            }
+        });
         return circleImageView;
     }
 
     private CircleImageView createEndView() {
-        CircleImageView civ = createCiv();
-        civ.setImageResource(R.mipmap.more_h);
+        final CircleImageView civ = createCiv();
+        civ.setImageResource(R.mipmap.more_dots);
+        civ.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (circlesViewClickListener != null) {
+                    circlesViewClickListener.clickDots(civ);
+                }
+            }
+        });
         return civ;
     }
 
@@ -109,10 +128,21 @@ public class CirclesView extends RelativeLayout implements ICirclesView {
     }
 
     private void setParentSize(int count) {
+        int totalNum = 0;
+        int totalWidth = 0;
         if (count > ivMaxNum) {
-//            civWidth
+            totalNum = ivMaxNum + 1;
         } else {
-
+            totalNum = count;
         }
+        totalWidth = totalNum * civWidth - marginleft * (totalNum - 1);
+        ViewGroup.LayoutParams layoutParams = getLayoutParams();
+        layoutParams.width = totalWidth;
+        setLayoutParams(layoutParams);
+    }
+
+    @Override
+    public void setCirclesViewClickListener(CirclesViewClickListener circlesViewClickListener) {
+        this.circlesViewClickListener = circlesViewClickListener;
     }
 }
