@@ -12,7 +12,7 @@ import android.widget.ImageView;
  * Created by 张磊 on 2016/10/10.
  */
 
-public class SelectImageview extends ImageView {
+public class SelectImageview extends ImageView implements ISelectView {
     private int NoResId = -100;
     private Drawable drawableChecked;
     private Drawable drawableUnChecked;
@@ -64,12 +64,10 @@ public class SelectImageview extends ImageView {
                 if (drawableChecked != null && drawableUnChecked != null) {
                     switch (CheckState) {
                         case CheckedState:
-                            setImageDrawable(drawableUnChecked);
-                            CheckState = UncheckedState;
+                            changgeToUnCheckedState();
                             break;
                         case UncheckedState:
-                            setImageDrawable(drawableChecked);
-                            CheckState = CheckedState;
+                            changgeToUnCheckedState();
                             break;
                     }
                 }
@@ -86,17 +84,41 @@ public class SelectImageview extends ImageView {
                 if (drawableChecked != null && drawableUnChecked != null) {
                     switch (CheckState) {
                         case CheckedState:
-                            setImageDrawable(drawableUnChecked);
-                            CheckState = UncheckedState;
+                            changgeToUnCheckedState();
                             break;
                         case UncheckedState:
-                            setImageDrawable(drawableChecked);
-                            CheckState = CheckedState;
+                            changgeToUnCheckedState();
                             break;
                     }
                 }
             }
         };
         super.setOnClickListener(onClickListener);
+    }
+
+    @Override
+    public void setCheckedState(boolean checked) {
+        switch (CheckState) {
+            case CheckedState:
+                if (!checked) {
+                    changgeToUnCheckedState();
+                }
+                break;
+            case UncheckedState:
+                if (checked) {
+                    changgeToUnCheckedState();
+                }
+                break;
+        }
+    }
+
+    private void changgeToCheckedState() {
+        setImageDrawable(drawableChecked);
+        CheckState = CheckedState;
+    }
+
+    private void changgeToUnCheckedState() {
+        setImageDrawable(drawableUnChecked);
+        CheckState = UncheckedState;
     }
 }

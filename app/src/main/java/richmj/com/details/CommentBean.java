@@ -12,4 +12,6 @@ public class CommentBean {
     public Date date;
     public String comment;
     public String toPeople;
+    public boolean hasPraised;
+    public int praiseCount;
 }

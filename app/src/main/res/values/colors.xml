@@ -1,6 +1,183 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="common_signin_btn_dark_text_default">@android:color/white</color>
+    <color name="common_signin_btn_dark_text_pressed">@android:color/white</color>
+    <color name="common_signin_btn_dark_text_disabled">#FFAAAAAA</color>
+    <color name="common_signin_btn_dark_text_focused">@android:color/white</color>
+    <color name="common_signin_btn_light_text_default">#FF737373</color>
+    <color name="common_signin_btn_light_text_pressed">@android:color/white</color>
+    <color name="common_signin_btn_light_text_disabled">#FFAAAAAA</color>
+    <color name="common_signin_btn_light_text_focused">#FF737373</color>
+    <color name="common_signin_btn_default_background">#FFDD4B39</color>
+    <color name="common_action_bar_splitter">#d2d2d2</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <drawable name="transparent">#0000</drawable>
+    <color name="bottom_pressed_color">#48C5D2</color>
+    <color name="home_page_bg">#66d2d7</color>
+    <color name="home_page_bg_dark">#02c8d1</color>
+    <color name="saft_bg">#e3f5ff</color>
+    <color name="point_checked">#9966d2d7</color>
+    <color name="point_unchecked">#99FFFFFF</color>
+    <color name="banner_green">#48c5d2</color>
+    <color name="font_red">#ed5857</color>
+    <color name="blue_light2">#FF91BEFB</color>
+    <color name="signed_red">#f46868</color>
+    <color name="default_text">#333333</color>
+    <color name="tag_gray_bg">#b5cee3</color>
+    <color name="alpha_60_black">#66000000</color>
+    <color name="alpha_90_black">#99000000</color>
+    <color name="gray">#cccccc</color>
+    <color name="divide_bg">#f2f2f2</color>
+    <color name="agent_top_bg">#5e7087</color>
+    <color name="ovel_out">#617488</color>
+    <color name="ovel_in">#677a8e</color>
+    <color name="gray_white">#ddedff</color>
+    <color name="light_black">#666666</color>
+    <color name="gray_enable_false">#d2d2d2</color>
+    <color name="alpha_40_white">#44ffffff</color>
+    <color name="alpha_20_white">#22ffffff</color>
+    <color name="holo_blue">#FF33E5B5</color>
+    <color name="light_green_white">#b9ddf1</color>
+    <color name="award_text_bg">#eefcfa</color>
+    <color name="text_color_3">#999999</color>
+    <color name="tabNormal">#FF858585</color>
+    <color name="tabSelect">#FF48C5D2</color>
+    <color name="gray_light">#FFF2F2F2</color>
+    <color name="gray_light3">#FF666666</color>
+    <color name="gray_dark">#FFE3E3E3</color>
+    <!-- 黑色，用于重要级文字信息 -->
+    <color name="black_word">#333333</color>
+    <!-- 淡紫，用于部分文字 -->
+    <color name="purple_word">#BCC3F9</color>
+    <!-- 深紫,用于部分文字 -->
+    <color name="deep_purple_word">#8190F5</color>
+    <!-- 灰,用于内容区域底色 -->
+    <color name="grey_base">#F8F8F8</color>
+    <color name="grey_low">#F2F2F2</color>
+    <color name="grey_lower">#666666</color>
+    <color name="grey_base_word">#CBCBCB</color>
+    <!-- 深灰,用于内容区域底色 -->
+    <color name="grey_deep_base">#595959</color>
+    <!-- 深灰2,用于内容区域底色 -->
+    <color name="grey_deep_word">#676767</color>
+    <!-- 深灰4,用于内容区域底色 -->
+    <color name="grey_line">#CCCCCC</color>
+
+    <!-- 黑,用于内容区域底色 -->
+    <color name="black_bg">#343642</color>
+    <!-- 浅灰,灰色边框 -->
+    <color name="grey_stroke">#E2E2E2</color>
+    <!-- 深灰 -->
+    <color name="grey_bar_base">#424451</color>
+    <!-- 浅灰 -->
+    <color name="grey_word">#333333</color>
+    <!-- 浅灰色字 -->
+    <color name="grey_low_word">#999999</color>
+    <!-- 50%透明度蓝色 -->
+    <color name="blue_half_base">#7f79B3FD</color>
+    <!-- 不透明度蓝色 -->
+    <color name="blue_base">#94c1fd</color>
+    <!-- 不透明度蓝色 -->
+    <color name="blue_low_base">#DFEBF7</color>
+
+    <!-- 淡蓝色 -->
+    <color name="blue_light">#F0F7FF</color>
+
+    <!-- 深蓝色 -->
+    <color name="blue_deep_base">#79b2fd</color>
+    <!-- 更深的蓝色 -->
+    <color name="blue_deeper_base">#6ba8fd</color>
+    <!-- 淡紫 -->
+    <color name="purple_bg">#B3BBF9</color>
+    <!-- 深紫 -->
+    <color name="purple_deep">#7776f5</color>
+    <!-- 淡蓝 -->
+    <color name="blue_bg">#AFD1FE</color>
+    <!-- 淡红 -->
+    <color name="red_bg">#F99DA2</color>
+    <!-- 淡黄 -->
+    <color name="yellow_bg">#FAC68D</color>
+    <!-- 大红 -->
+    <color name="red">#D00B1F</color>
+    <!-- 深红 -->
+    <color name="red_deep">#C13300</color>
+    <!-- 透明黑色 -->
+    <color name="black_transparent">#88000000</color>
+    <!-- 深些的透明黑色 -->
+    <color name="black_deep_transparent">#b0000000</color>
+    <!-- 绿色 -->
+    <color name="green_base">#8CC86E</color>
+    <!-- 粉色 -->
+    <color name="pink_base">#FFA59C</color>
+
+
+    <!-- 发布-->
+    <!-- 半透明白 -->
+    <color name="white_half_transparent">#3fffffff</color>
+    <!-- 透明 -->
+    <color name="white_transparent">#00000000</color>
+    <!-- 橙色 -->
+    <color name="orange">#F43C00</color>
+    <!-- 青绿色-->
+    <color name="dark_green">#69C5D0</color>
+    <!-- 深青绿色-->
+    <color name="dark_deeper_green">#356970</color>
+    <!-- 灰色，滚动框专用-->
+    <color name="province_line_border">#C7C7C7</color>
+    <!-- 肉红色，签到-->
+    <color name="sign">#F99DA1</color>
+    <!-- 肉黄色，签到-->
+    <color name="fill_in">#FCC78F</color>
+    <!--start-->
+    <color name="mine_white">#ffffff</color>
+    <color name="title_black">#79b2fd</color>
+    <color name="tab_black">#639eea</color>
+    <color name="tab_font">#82879E</color>
+    <color name="empty_button_blue">#88BBFE</color>
+    <color name="button_blue">#79B2FD</color>
+    <color name="tag_background">#AEBAF7</color>
+    <color name="dialog_black">#424451</color>
+    <color name="bt_login">#2271B6</color>
+    <color name="recommend_record_bg">#F2F2F2</color>
+    <color name="line_gray">#DEDEDE</color>
+    <color name="pure_white">#FFFFFF</color>
+    <color name="font_grey">#999999</color>
+    <color name="line_black">#CCCCCC</color>
+    <color name="font_time">#666666</color>
+    <color name="login_button">#2171B5</color>
+    <color name="button_finish">#EDEDED</color>
+    <color name="search_bg">#F2F2F2</color>
+    <color name="bg_grey">#D2D2D2</color>
+    <!--  消息功能-->
+    <color name="black">#000000</color>
+    <color name="write_back">#807878</color>
+    <color name="white">#ffffff</color>
+    <color name="blue">#9ebeea</color>
+
+    <!-- 发布-->
+    <drawable name="translucent_background">#5500ff</drawable>
+    <color name="black_shallow">#31e4e4e4</color>
+    <!--  圈子-->
+    <color name="group_transparent">#00000000</color>
+    <color name="group_red">#cc0808</color>
+    <color name="group_black">#a7a2a2</color>
+
+
+    <!--  圈子pager -->
+    <color name="background_tab_pressed">#6633B5E5</color>
+
+    <color name="background_window">#FFE5E5E5</color>
+    <!--============================================== 老杨颜色代码====================-->
+    <color name="tab_blue">#639eea</color>
+    <!--end-->
+
+    <!-- 群聊背景色 -->
+    <color name="conversation_bg">#F2F2F2</color>
+    <!--发布圈子按钮背景-->
+    <color name="blue_bright">#FF79B3FD</color>
+    <color name="bg_dialog">#FFF6F6F6</color>
+    <color name="gray_light2">#FFD8D8D8</color>
+    <color name="gray_line">#FFEAEBED</color>
 </resources>
