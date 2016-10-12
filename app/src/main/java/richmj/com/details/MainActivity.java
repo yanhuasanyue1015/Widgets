@@ -38,7 +38,9 @@ public class MainActivity extends AppCompatActivity {
         commentView = (CommentView) findViewById(R.id.commentView);
       /*  photoView.setUrls("http://pic5.wed114.cn/20150514/2015051417031316662956.jpg"
         ); */
-        photoView.setUrls("http://scimg.jb51.net/allimg/160831/102-160S1164951M1.jpg"
+        photoView.setUrls("http://scimg.jb51.net/allimg/160831/102-160S1164951M1.jpg",
+                "http://scimg.jb51.net/allimg/160831/102-160S1164951M1.jpg",
+                "http://scimg.jb51.net/allimg/160831/102-160S1164951M1.jpg", "http://scimg.jb51.net/allimg/160831/102-160S1164951M1.jpg"
         );
 
 //        photoView.setUrls("http://photo.enterdesk.com/2009-4-21/200901241609531378.png");

@@ -22,4 +22,11 @@
         <attr name="hint" format="string"></attr>
         <attr name="maxinputcount" format="integer"></attr>
     </declare-styleable>
+    <declare-styleable name="StateBtn">
+        <attr name="tvcolor_enable" format="color"></attr>
+        <attr name="tvcolor_unable" format="color"></attr>
+        <attr name="bgcolor_enable" format="color"></attr>
+        <attr name="bgcolor_unable" format="color"></attr>
+        <attr name="bgcolor_pressed" format="color"></attr>
+    </declare-styleable>
 </resources>

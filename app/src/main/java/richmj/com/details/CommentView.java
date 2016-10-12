@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
@@ -99,6 +100,7 @@ public class CommentView extends FrameLayout implements ICommentView {
         private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm");
         private List<CommentBean> commentBeanList;
         private INetOfCommentView iNetOfCommentView;
+        private final Dialog dialog;
 
         public ViewHolder(View view) {
             this.view = view;
@@ -124,6 +126,7 @@ public class CommentView extends FrameLayout implements ICommentView {
                     }
                 }
             });
+            dialog = createDialog();
         }
 
 
@@ -255,14 +258,25 @@ public class CommentView extends FrameLayout implements ICommentView {
             public void onClick(View v) {
                 int viewId = v.getId();
                 if (viewId == R.id.ivAddCotentTitle) {
-
+                    dialog.show();
                 }
             }
         };
 
         private Dialog createDialog() {
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-            return builder.create();
+            View limitedtLay = LayoutInflater.from(view.getContext()).inflate(R.layout.addcommentlay, null);
+            LimitEdt limitedtContent = (LimitEdt) limitedtLay.findViewById(R.id.limitedtContent);
+            Button btnSend = (Button) limitedtLay.findViewById(R.id.btnSend);
+            builder.setView(limitedtLay);
+            final AlertDialog alertDialog = builder.create();
+            btnSend.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alertDialog.dismiss();
+                }
+            });
+            return alertDialog;
         }
     }
 }
