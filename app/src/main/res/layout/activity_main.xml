@@ -12,6 +12,11 @@
         android:orientation="vertical"
         tools:context="richmj.com.details.MainActivity">
 
+        <richmj.com.details.LimitEdt
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:maxinputcount="10"></richmj.com.details.LimitEdt>
+
         <richmj.com.details.PhotosView
             android:id="@+id/photoView"
             android:layout_width="match_parent"
