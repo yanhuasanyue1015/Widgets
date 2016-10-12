@@ -54,7 +54,9 @@
     <!-- 深紫,用于部分文字 -->
     <color name="deep_purple_word">#8190F5</color>
     <!-- 灰,用于内容区域底色 -->
+    <color name="black_light">#FF3B3B3B</color>
     <color name="grey_base">#F8F8F8</color>
+    <color name="gray_deep">#FFABABAB</color>
     <color name="grey_low">#F2F2F2</color>
     <color name="grey_lower">#666666</color>
     <color name="grey_base_word">#CBCBCB</color>

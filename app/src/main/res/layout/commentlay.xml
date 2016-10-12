@@ -19,20 +19,23 @@
 
         <TextView
             android:id="@+id/tvTimeTitle"
+            android:textColor="@color/gray_deep"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/iv1"
-            android:textSize="14sp" />
+            android:textSize="@dimen/tvsizesmall" />
 
         <TextView
             android:id="@+id/tvNameTitle"
             android:layout_width="wrap_content"
+            android:textSize="@dimen/tvsizemiddle"
             android:layout_height="wrap_content"
+            android:textColor="@color/black_light"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-         />
+            android:layout_centerVertical="true" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civAvater"
@@ -40,8 +43,7 @@
             android:layout_height="@dimen/commentcivwidth"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@id/tvNameTitle"
-             />
+            android:layout_toLeftOf="@id/tvNameTitle" />
     </RelativeLayout>
 
     <TextView
@@ -50,8 +52,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/rlay1"
         android:layout_marginLeft="16dp"
+        android:textColor="@color/black_word"
         android:layout_marginTop="10dp"
-        android:textSize="15sp" />
+        android:textSize="@dimen/tvsizemiddle" />
 
     <RelativeLayout
         android:id="@+id/rlay3"
@@ -59,14 +62,14 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/tvCotentTitle"
         android:layout_below="@id/tvCotentTitle"
-        android:layout_marginTop="8dp">
+        android:layout_marginTop="14dp">
 
         <ImageView
-
             android:id="@+id/ivAddCotentTitle"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_centerVertical="true"
+            android:padding="5dp"
             android:src="@mipmap/comment" />
 
         <LinearLayout
@@ -76,12 +79,15 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="30dp"
             android:layout_toRightOf="@id/ivAddCotentTitle"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="5dp">
 
             <richmj.com.details.SelectImageview
                 android:id="@+id/selectivPraise"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:clickable="false"
+                android:padding="5dp"
                 app:state_checked="@mipmap/praisehas"
                 app:state_unchecked="@mipmap/praise" />
 
@@ -90,22 +96,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
-                />
+                android:textSize="@dimen/tvsizesmall"
+                android:textColor="@color/gray_deep"
+                android:padding="5dp" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/rlay2"
+            android:id="@+id/rlayFold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="5dp">
 
             <TextView
                 android:id="@+id/tvCommentCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
+                android:textColor="@color/black_light"
                 android:text="评论" />
 
             <CheckBox
@@ -113,15 +123,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/selector_up_down"
-                android:button="@null" />
+                android:button="@null"
+                android:clickable="false" />
         </LinearLayout>
     </RelativeLayout>
-    <LinearLayout
-        android:layout_marginTop="10dp"
-        android:layout_alignLeft="@id/rlay3"
-        android:id="@+id/layContentContainer"
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/rlay3"
-        android:orientation="vertical"></LinearLayout>
+        android:layout_alignLeft="@id/rlay3"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/rlay3">
+
+        <LinearLayout
+            android:id="@+id/layContentContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical"></LinearLayout>
+    </RelativeLayout>
+
 </RelativeLayout>

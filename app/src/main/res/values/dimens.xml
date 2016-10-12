@@ -3,4 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="commentcivwidth">25dp</dimen>
+    <dimen name="tvsizemiddle">18sp</dimen>
+    <dimen name="tvsizesmall">13sp</dimen>
+
 </resources>

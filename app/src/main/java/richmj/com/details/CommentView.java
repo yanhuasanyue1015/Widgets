@@ -1,5 +1,6 @@
 package richmj.com.details;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
@@ -7,6 +8,10 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -17,9 +22,11 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -83,6 +90,21 @@ public class CommentView extends FrameLayout implements ICommentView {
         viewHolder.setINetOfCommentView(iNetOfCommentView);
     }
 
+    @Override
+    public void setUserId(int userId) {
+        viewHolder.setUserId(userId);
+    }
+
+    @Override
+    public void setUserAvatar(String url) {
+        viewHolder.setUserAvatar(url);
+    }
+
+    @Override
+    public void setName(String name) {
+        viewHolder.setName(name);
+    }
+
     public static class ViewHolder implements ICommentView {
         private TextView tvTimeTitle;
         private TextView tvNameTitle;
@@ -100,7 +122,11 @@ public class CommentView extends FrameLayout implements ICommentView {
         private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm");
         private List<CommentBean> commentBeanList;
         private INetOfCommentView iNetOfCommentView;
-        private final Dialog dialog;
+        private int userId;
+        private String avatarUrl;
+        private String name;
+        private final LinearLayout rlayFold;
+        private TimeUtil timeUtil = new TimeUtil();
 
         public ViewHolder(View view) {
             this.view = view;
@@ -114,26 +140,33 @@ public class CommentView extends FrameLayout implements ICommentView {
             tvPraiseCount = (TextView) view.findViewById(R.id.tvPraiseCount);
             selectivPraise = (SelectImageview) view.findViewById(R.id.selectivPraise);
             layContentContainer = (LinearLayout) view.findViewById(R.id.layContentContainer);
+            rlayFold = (LinearLayout) view.findViewById(R.id.rlayFold);
             commentcivwidth = view.getContext().getResources().getDimensionPixelSize(R.dimen.commentcivwidth);
             ivAddCotentTitle.setOnClickListener(onClickListener);
+            rlayFold.setOnClickListener(onClickListener);
             checkboxSelect.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                     if (isChecked) {
-                        layContentContainer.setVisibility(VISIBLE);
+                        layContentContainer.animate().translationY(-(layContentContainer.getHeight()));
                     } else {
-                        layContentContainer.setVisibility(GONE);
+                        layContentContainer.animate().translationY(0);
                     }
                 }
             });
-            dialog = createDialog();
+
         }
 
 
         @Override
         public void setSelf(CommentBean data) {
             this.dataSelf = data;
-            tvTimeTitle.setText(simpleDateFormat.format(data.date));
+            try {
+                tvTimeTitle.setText(timeUtil.getIntervalTimeFromCreateTime(data.date));
+            } catch (ParseException e) {
+                e.printStackTrace();
+                tvTimeTitle.setText("");
+            }
             tvNameTitle.setText(data.name);
             Picasso.with(view.getContext()).load(data.avatar).resize(commentcivwidth, commentcivwidth).onlyScaleDown().into(civAvater);
             tvCotentTitle.setText(data.comment);
@@ -165,6 +198,11 @@ public class CommentView extends FrameLayout implements ICommentView {
         }
 
         @Override
+        public void setINetOfCommentView(INetOfCommentView iNetOfCommentView) {
+            this.iNetOfCommentView = iNetOfCommentView;
+        }
+
+        @Override
         public void setOthers(List<CommentBean> commentBeans) {
             this.commentBeanList = commentBeans;
             layContentContainer.removeAllViews();
@@ -192,10 +230,10 @@ public class CommentView extends FrameLayout implements ICommentView {
             for (CommentBean iteam : commentBeans) {
                 layContentContainer.addView(createCommentIteamView(iteam));
             }
-            tvCommentCount.setText(String.format("评论 (%d)条", commentBeanList.size()));
+            tvCommentCount.setText(String.format("评论 (%d条)", commentBeanList.size()));
         }
 
-        private View createCommentIteamView(CommentBean commentBean) {
+        private View createCommentIteamView(final CommentBean commentBean) {
             View iteamView = LayoutInflater.from(view.getContext()).inflate(R.layout.iteam_comment, null);
             if (layContentContainer.getChildCount() != 0) {
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -211,7 +249,12 @@ public class CommentView extends FrameLayout implements ICommentView {
             TextView tvdot = (TextView) iteamView.findViewById(R.id.tvdot);
             Picasso.with(view.getContext()).load(commentBean.avatar).resize(commentcivwidth, commentcivwidth).onlyScaleDown().into(civAvater);
             tvName.setText(commentBean.name);
-            tvTime.setText(simpleDateFormat.format(commentBean.date));
+            try {
+                tvTime.setText(timeUtil.getIntervalTimeFromCreateTime(commentBean.date));
+            } catch (ParseException e) {
+                tvTime.setText("");
+                e.printStackTrace();
+            }
             if (commentBean.idOther != dataSelf.idSelf) {
                 tvTo.setVisibility(VISIBLE);
                 tvToWho.setVisibility(VISIBLE);
@@ -223,6 +266,14 @@ public class CommentView extends FrameLayout implements ICommentView {
                 tvdot.setVisibility(GONE);
             }
             tvContent.setText(commentBean.comment);
+            iteamView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (commentBean.idSelf != userId) {
+                        createDialog(commentBean).show();
+                    }
+                }
+            });
             return iteamView;
         }
 
@@ -231,26 +282,38 @@ public class CommentView extends FrameLayout implements ICommentView {
             if (commentBean.idOther == dataSelf.idSelf) {
                 commentBeanList.add(commentBean);
                 layContentContainer.addView(createCommentIteamView(commentBean));
+                tvCommentCount.setText(String.format("评论 (%d)条", commentBeanList.size()));
             } else {
                 for (int i = 0; i < commentBeanList.size(); i++) {
                     CommentBean iteam = commentBeanList.get(i);
-                    if (iteam.idOther == commentBean.idSelf) {
+                    if (dataSelf.idSelf == iteam.idOther && iteam.idSelf == commentBean.idOther) {
                         for (int j = i + 1; j < commentBeanList.size(); j++) {
                             CommentBean iteam2 = commentBeanList.get(i);
                             if (iteam2.idOther == dataSelf.idSelf) {
                                 commentBeanList.add(j, commentBean);
                                 layContentContainer.addView(createCommentIteamView(commentBean), j);
+                                tvCommentCount.setText(String.format("评论 (%d)条", commentBeanList.size()));
+                                return;
                             }
                         }
                     }
                 }
             }
-            tvCommentCount.setText(String.format("评论 (%d)条", commentBeanList.size()));
         }
 
         @Override
-        public void setINetOfCommentView(INetOfCommentView iNetOfCommentView) {
-            this.iNetOfCommentView = iNetOfCommentView;
+        public void setUserId(int userId) {
+            this.userId = userId;
+        }
+
+        @Override
+        public void setUserAvatar(String url) {
+            this.avatarUrl = url;
+        }
+
+        @Override
+        public void setName(String name) {
+            this.name = name;
         }
 
         private OnClickListener onClickListener = new OnClickListener() {
@@ -258,25 +321,53 @@ public class CommentView extends FrameLayout implements ICommentView {
             public void onClick(View v) {
                 int viewId = v.getId();
                 if (viewId == R.id.ivAddCotentTitle) {
-                    dialog.show();
+                    createDialog(dataSelf).show();
+                } else if (viewId == R.id.rlayFold) {
+                    checkboxSelect.setChecked(!checkboxSelect.isChecked());
                 }
             }
         };
+        private Dialog alertDialog;
+        CommentBean temp;
 
-        private Dialog createDialog() {
+        private Dialog createDialog(CommentBean commentBean) {
             AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
             View limitedtLay = LayoutInflater.from(view.getContext()).inflate(R.layout.addcommentlay, null);
-            LimitEdt limitedtContent = (LimitEdt) limitedtLay.findViewById(R.id.limitedtContent);
-            Button btnSend = (Button) limitedtLay.findViewById(R.id.btnSend);
+            final LimitEdt limitedtContent = (LimitEdt) limitedtLay.findViewById(R.id.limitedtContent);
+            StateBtn btnSend = (StateBtn) limitedtLay.findViewById(R.id.btnSend);
             builder.setView(limitedtLay);
-            final AlertDialog alertDialog = builder.create();
+            if (alertDialog == null) {
+                alertDialog = builder.create();
+            }
+            temp = commentBean;
             btnSend.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    addOther(createNewCommentBean(temp, limitedtContent.getText().toString()));
+                    ((Activity) (view.getContext())).getWindow().setSoftInputMode(
+                            WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
+                    );
+                    limitedtContent.setText("");
                     alertDialog.dismiss();
                 }
             });
             return alertDialog;
         }
+
+        private CommentBean createNewCommentBean(CommentBean commentBean, String content) {
+            CommentBean commentBeanNew = new CommentBean();
+            commentBeanNew.idSelf = userId;
+            commentBeanNew.idOther = commentBean.idSelf;
+            commentBeanNew.avatar = avatarUrl;
+            commentBeanNew.comment = content;
+            commentBeanNew.date = Calendar.getInstance().getTime();
+            commentBeanNew.hasPraised = false;
+            commentBeanNew.praiseCount = 0;
+            commentBeanNew.nameOther = commentBean.name;
+            commentBeanNew.name = name;
+            return commentBeanNew;
+        }
+
     }
+
 }

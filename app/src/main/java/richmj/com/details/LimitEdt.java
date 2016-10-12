@@ -94,6 +94,8 @@ public class LimitEdt extends FrameLayout implements ILimitEdt {
         if (maxinputcount != NoInt) {
             if (charSequence.length() > maxinputcount) {
                 edtContent.setText(charSequence.subSequence(0, maxinputcount));
+            }else{
+                edtContent.setText(charSequence);
             }
         } else {
             edtContent.setText(charSequence);

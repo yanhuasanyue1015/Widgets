@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -11,17 +12,20 @@
         android:orientation="horizontal">
 
         <richmj.com.details.LimitEdt
-            app:hint="我也说点儿什么吧..."
             android:id="@+id/limitedtContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            app:hint="我也说点儿什么吧..."
             app:maxinputcount="80"></richmj.com.details.LimitEdt>
 
-        <Button
+        <richmj.com.details.StateBtn
             android:id="@+id/btnSend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="发送" />
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="13dp"
+            android:text="发送"
+            android:textSize="15sp" />
     </LinearLayout>
 </LinearLayout>

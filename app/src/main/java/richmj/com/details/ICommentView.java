@@ -16,4 +16,8 @@ public interface ICommentView {
     void addOther(CommentBean commentBean);
 
     void setINetOfCommentView(INetOfCommentView iNetOfCommentView);
+
+    void setUserId(int userId);
+    void setUserAvatar(String url);
+    void setName(String name);
 }

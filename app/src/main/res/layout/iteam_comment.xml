@@ -20,6 +20,8 @@
 
         <TextView
             android:id="@+id/tvName"
+            android:textSize="@dimen/tvsizemiddle"
+            android:textColor="@color/black_light"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -33,6 +35,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:textColor="@color/gray_deep"
+            android:textSize="@dimen/tvsizesmall"
             android:text="9-12 12:35" />
     </RelativeLayout>
 
@@ -40,11 +44,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rlay1"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="9dp"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/tvTo"
+            android:textSize="@dimen/tvsizemiddle"
+            android:textColor="@color/black_word"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="回复" />
@@ -54,17 +60,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="\@Amy"
+            android:textSize="@dimen/tvsizemiddle"
             android:textColor="@color/blue_light2" />
 
         <TextView
             android:id="@+id/tvdot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/tvsizemiddle"
+            android:textColor="@color/black_word"
             android:text=":" />
 
         <TextView
             android:id="@+id/tvContent"
             android:layout_width="wrap_content"
+            android:textSize="@dimen/tvsizemiddle"
+            android:textColor="@color/black_light"
             android:layout_height="wrap_content"
             android:text="只能被动的任由宰割了" />
     </LinearLayout>

@@ -8,7 +8,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -42,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
                 "http://scimg.jb51.net/allimg/160831/102-160S1164951M1.jpg",
                 "http://scimg.jb51.net/allimg/160831/102-160S1164951M1.jpg", "http://scimg.jb51.net/allimg/160831/102-160S1164951M1.jpg"
         );
+        commentView.setName("我是帅锅");
+        commentView.setUserId(7);
+        commentView.setUserAvatar("http://pic5.wed114.cn/20150514/2015051417031316662956.jpg");
 
 //        photoView.setUrls("http://photo.enterdesk.com/2009-4-21/200901241609531378.png");
 //        photoView.setUrls("http://img4.imgtn.bdimg.com/it/u=1984460196,3484293998&fm=21&gp=0.jpg", "http://img4.imgtn.bdimg.com/it/u=1984460196,3484293998&fm=21&gp=0.jpg", "http://img4.imgtn.bdimg.com/it/u=1984460196,3484293998&fm=21&gp=0.jpg", "http://img4.imgtn.bdimg.com/it/u=1984460196,3484293998&fm=21&gp=0.jpg", "http://img4.imgtn.bdimg.com/it/u=1984460196,3484293998&fm=21&gp=0.jpg");
@@ -88,12 +93,17 @@ public class MainActivity extends AppCompatActivity {
         commentBean.idSelf = 11;
         commentView.setSelf(commentBean);
         List<CommentBean> commentBeanList = new ArrayList<>();
+        Random random=new Random();
+
         for (int i = 0; i < 11; i++) {
             CommentBean commentBeanTemp = new CommentBean();
-            commentBeanTemp.name = "张磊";
+            commentBeanTemp.name = "张磊"+count;
             commentBeanTemp.avatar = "http://img3.imgtn.bdimg.com/it/u=8453116,2287725467&fm=11&gp=0.jpg";
             commentBeanTemp.comment = "不喜欢你的言论";
-            commentBeanTemp.date = Calendar.getInstance().getTime();
+            Calendar instance = Calendar.getInstance();
+            Date time = instance.getTime();
+            time.setTime(time.getTime()-random.nextInt(1000000));
+            commentBeanTemp.date = time;
             commentBeanTemp.hasPraised = true;
             commentBeanTemp.praiseCount = 100;
             commentBeanTemp.idOther = 11;
