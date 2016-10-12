@@ -20,6 +20,12 @@ public class SelectImageview extends ImageView implements ISelectView {
     private final int UncheckedState = 2;
     private int CheckState = CheckedState;
 
+    public void setStateChanggeListener(ISelectViewStateChanggeListener selectViewStateChanggeListener) {
+        this.selectViewStateChanggeListener = selectViewStateChanggeListener;
+    }
+
+    private ISelectViewStateChanggeListener selectViewStateChanggeListener;
+
     public SelectImageview(Context context) {
         super(context);
 
@@ -64,10 +70,16 @@ public class SelectImageview extends ImageView implements ISelectView {
                 if (drawableChecked != null && drawableUnChecked != null) {
                     switch (CheckState) {
                         case CheckedState:
+                            if (selectViewStateChanggeListener != null) {
+                                selectViewStateChanggeListener.changgeTo(false);
+                            }
                             changgeToUnCheckedState();
                             break;
                         case UncheckedState:
-                            changgeToUnCheckedState();
+                            if (selectViewStateChanggeListener != null) {
+                                selectViewStateChanggeListener.changgeTo(true);
+                            }
+                            changgeToCheckedState();
                             break;
                     }
                 }
@@ -84,10 +96,16 @@ public class SelectImageview extends ImageView implements ISelectView {
                 if (drawableChecked != null && drawableUnChecked != null) {
                     switch (CheckState) {
                         case CheckedState:
+                            if (selectViewStateChanggeListener != null) {
+                                selectViewStateChanggeListener.changgeTo(false);
+                            }
                             changgeToUnCheckedState();
                             break;
                         case UncheckedState:
-                            changgeToUnCheckedState();
+                            if (selectViewStateChanggeListener != null) {
+                                selectViewStateChanggeListener.changgeTo(true);
+                            }
+                            changgeToCheckedState();
                             break;
                     }
                 }
@@ -106,7 +124,7 @@ public class SelectImageview extends ImageView implements ISelectView {
                 break;
             case UncheckedState:
                 if (checked) {
-                    changgeToUnCheckedState();
+                    changgeToCheckedState();
                 }
                 break;
         }

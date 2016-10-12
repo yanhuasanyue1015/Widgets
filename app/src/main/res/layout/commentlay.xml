@@ -24,7 +24,6 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/iv1"
-            android:text="9-12 12:34"
             android:textSize="14sp" />
 
         <TextView
@@ -33,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:text="李军" />
+         />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civAvater"
@@ -42,7 +41,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@id/tvNameTitle"
-            android:src="@mipmap/bg" />
+             />
     </RelativeLayout>
 
     <TextView
@@ -52,10 +51,10 @@
         android:layout_below="@id/rlay1"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="10dp"
-        android:text="说好不收费的，才几个月，这不是打脸吗？"
         android:textSize="15sp" />
 
     <RelativeLayout
+        android:id="@+id/rlay3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/tvCotentTitle"
@@ -91,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="3dp"
-                android:text="12" />
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -107,7 +106,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
-                android:text="评论(3条)" />
+                android:text="评论" />
 
             <CheckBox
                 android:id="@+id/checkboxSelect"
@@ -116,12 +115,13 @@
                 android:background="@drawable/selector_up_down"
                 android:button="@null" />
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layContentContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/rlay2"
-            android:orientation="vertical"></LinearLayout>
     </RelativeLayout>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_alignLeft="@id/rlay3"
+        android:id="@+id/layContentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlay3"
+        android:orientation="vertical"></LinearLayout>
 </RelativeLayout>

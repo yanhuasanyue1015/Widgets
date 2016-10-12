@@ -14,4 +14,6 @@ public interface ICommentView {
     void setOthers(List<CommentBean> commentBean);
 
     void addOther(CommentBean commentBean);
+
+    void setINetOfCommentView(INetOfCommentView iNetOfCommentView);
 }

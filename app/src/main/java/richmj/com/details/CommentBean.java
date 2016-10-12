@@ -7,11 +7,13 @@ import java.util.Date;
  */
 
 public class CommentBean {
+    public int idSelf;
     public String name;
     public String avatar;
     public Date date;
     public String comment;
-    public String toPeople;
+    public int idOther;
+    public String nameOther;
     public boolean hasPraised;
     public int praiseCount;
 }

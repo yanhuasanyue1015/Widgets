@@ -1,73 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="richmj.com.details.MainActivity">
+    android:layout_height="match_parent">
 
-    <richmj.com.details.PhotosView
-        android:id="@+id/photoView"
+    <LinearLayout
+        android:id="@+id/activity_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:maxcount="6"></richmj.com.details.PhotosView>
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context="richmj.com.details.MainActivity">
 
-    <richmj.com.details.SelectImageview
-        android:id="@+id/selectiv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="30dp"
-        app:state_checked="@mipmap/praise"
-        app:state_unchecked="@mipmap/praisehas" />
+        <richmj.com.details.PhotosView
+            android:id="@+id/photoView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:maxcount="6"></richmj.com.details.PhotosView>
 
-    <RelativeLayout
-        android:visibility="gone"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content">
+        <richmj.com.details.SelectImageview
+            android:id="@+id/selectiv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="30dp"
+            app:state_checked="@mipmap/praise"
+            app:state_unchecked="@mipmap/praisehas" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/civ1"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:src="@mipmap/bg"
-            app:civ_border_color="@android:color/white"
-            app:civ_border_width="2dp" />
+        <RelativeLayout
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/civ2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignRight="@id/civ1"
-            android:layout_marginRight="26dp"
-            android:src="@mipmap/bg"
-            app:civ_border_color="@android:color/white"
-            app:civ_border_width="2dp" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civ1"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/bg"
+                app:civ_border_color="@android:color/white"
+                app:civ_border_width="2dp" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/civ3"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignRight="@id/civ2"
-            android:layout_marginRight="26dp"
-            android:src="@mipmap/bg"
-            app:civ_border_color="@android:color/white"
-            app:civ_border_width="2dp" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civ2"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignRight="@id/civ1"
+                android:layout_marginRight="26dp"
+                android:src="@mipmap/bg"
+                app:civ_border_color="@android:color/white"
+                app:civ_border_width="2dp" />
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/civ4"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignRight="@id/civ3"
-            android:layout_marginRight="26dp"
-            android:src="@mipmap/bg"
-            app:civ_border_color="@android:color/white"
-            app:civ_border_width="2dp" />
-    </RelativeLayout>
-    <richmj.com.details.CirclesView
-        android:id="@+id/civs"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"></richmj.com.details.CirclesView>
-</LinearLayout>
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civ3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignRight="@id/civ2"
+                android:layout_marginRight="26dp"
+                android:src="@mipmap/bg"
+                app:civ_border_color="@android:color/white"
+                app:civ_border_width="2dp" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civ4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignRight="@id/civ3"
+                android:layout_marginRight="26dp"
+                android:src="@mipmap/bg"
+                app:civ_border_color="@android:color/white"
+                app:civ_border_width="2dp" />
+        </RelativeLayout>
+
+        <richmj.com.details.CirclesView
+            android:id="@+id/civs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></richmj.com.details.CirclesView>
+
+        <richmj.com.details.CommentView
+            android:id="@+id/commentView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"></richmj.com.details.CommentView>
+    </LinearLayout>
+</ScrollView>
