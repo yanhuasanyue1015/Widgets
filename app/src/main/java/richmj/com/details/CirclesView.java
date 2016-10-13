@@ -11,6 +11,8 @@ import android.widget.RelativeLayout;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -68,26 +70,37 @@ public class CirclesView extends RelativeLayout implements ICirclesView {
             endViewlayoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, TRUE);
             endView.setLayoutParams(endViewlayoutParams);
             addView(endView);
-            for (int i = ivMaxNum-1; i >=0; i--) {
+            for (int i = ivMaxNum - 1; i >= 0; i--) {
                 CircleImageView cellView = createCellView(urls[i], i);
                 RelativeLayout.LayoutParams cellViewlayoutParams = (LayoutParams) cellView.getLayoutParams();
                 cellViewlayoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, TRUE);
-                cellViewlayoutParams.setMargins(0, 0, marginRight* (ivMaxNum-i ), 0);
+                cellViewlayoutParams.setMargins(0, 0, marginRight * (ivMaxNum - i), 0);
                 cellView.setLayoutParams(cellViewlayoutParams);
                 addView(cellView);
             }
         } else {
-            for (int i = urls.length-1; i >=0; i--) {
+            for (int i = urls.length - 1; i >= 0; i--) {
                 CircleImageView cellView = createCellView(urls[i], i);
                 RelativeLayout.LayoutParams cellViewlayoutParams = (LayoutParams) cellView.getLayoutParams();
                 cellViewlayoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, TRUE);
-                if (i != urls.length-1) {
-                    cellViewlayoutParams.setMargins(0, 0, marginRight * (urls.length-1-i), 0);
+                if (i != urls.length - 1) {
+                    cellViewlayoutParams.setMargins(0, 0, marginRight * (urls.length - 1 - i), 0);
                 }
                 cellView.setLayoutParams(cellViewlayoutParams);
                 addView(cellView);
             }
         }
+    }
+
+    @Override
+    public void setUrls(List<String> urls) {
+        String[] dataTemp = urls.toArray(new String[urls.size()]);
+        setUrls(dataTemp);
+    }
+
+    @Override
+    public int getMaxNum() {
+        return ivMaxNum;
     }
 
     private CircleImageView createCellView(String url, final int position) {
